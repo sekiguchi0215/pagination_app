@@ -7,8 +7,11 @@ class PostsController < ApplicationController
   end
 
   def create
-    Post.create!(post_params)
-    redirect_to root_path
+    if Post.create(post_params)
+      redirect_to root_path
+    else
+      render index
+    end
   end
 
   private
